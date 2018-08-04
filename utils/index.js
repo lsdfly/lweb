@@ -61,12 +61,12 @@ class utils{
         return process.platform == 'win32'
     }
     open(url){
-        console.log(process.platform)
-        if (this.isWin()) {
-            childProcess.spawn('cmd.exe', ['/c', 'start', 'chrome', url])
-        } else {
-            childProcess.spawn('start', ['chrome', url]);
-        }
+        // console.log(process.platform)
+        // if (this.isWin()) {
+        //     childProcess.spawn('cmd.exe', ['/c', 'start', 'chrome', url])
+        // } else {
+        //     childProcess.spawn('start', ['chrome', url]);
+        // }
     
     }
     exists(_path){  
