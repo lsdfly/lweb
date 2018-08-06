@@ -1,5 +1,6 @@
 const childProcess = require('child_process');
 const fs = require('fs');
+const path = require('path');
 
 
 // export  function getIPAdress(all) {
@@ -70,7 +71,7 @@ class utils{
     
     }
     exists(_path){  
-        return fs.existsSync(_path) || path.existsSync(_path);  
+        return fs.existsSync(_path) || fs.existsSync(_path);  
     }  
     isFile(_path){
         return this.exists(_path) && fs.statSync(_path).isFile();  
