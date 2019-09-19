@@ -1,5 +1,6 @@
 const childProcess = require('child_process');
 const fs = require('fs');
+const net = require('net');
 const path = require('path');
 
 
@@ -78,6 +79,25 @@ class utils{
     }
     isDir(_path){
         return this.exists(_path) && fs.statSync(_path).isDirectory();  
+    }
+    portIsOccupied(port,cb=(err,port)=>{}){
+        const server=net.createServer().listen(port)
+            server.on('listening',()=>{
+               
+                server.close()
+                cb(null,port)
+               
+            })
+    
+            server.on('error',(err)=>{
+                if(err.code==='EADDRINUSE'){
+                    this.portIsOccupied(port+1,cb)
+                    // console.log(`this port ${port} is occupied.try another.`)
+                }else{
+                    cb(err)
+                }
+            })
+    
     }
 }
 module.exports =new utils();
